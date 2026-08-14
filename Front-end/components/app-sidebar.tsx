@@ -288,20 +288,24 @@ export function AppSidebar() {
           <div className="p-4 border-t border-sidebar-border">
             {!collapsed ? (
               <div className="flex items-center gap-3">
-                <Avatar className="w-9 h-9">
+                <Avatar className="w-9 h-9 shrink-0 border border-sidebar-border/60">
                   <AvatarImage
-                    src={`https://api.dicebear.com/7.x/notionists/svg?seed=${user?.avatar}`}
+                    src={`https://api.dicebear.com/7.x/notionists/svg?seed=${user?.avatar || "yuki"}`}
+                    alt={user?.name || "User Avatar"}
+                    className="object-cover bg-secondary"
                   />
-                  <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+                  <AvatarFallback className="bg-primary/20 text-primary font-bold text-xs uppercase">
+                    {user?.name ? user.name.charAt(0) : "Y"}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{user?.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                  <p className="text-sm font-medium text-foreground truncate">{user?.name || "Yuki Tanaka"}</p>
+                  <p className="text-xs text-zinc-400 truncate">{user?.email || "yuki@mangaflow.com"}</p>
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="shrink-0">
-                      <Settings className="w-4 h-4" />
+                      <Settings className="w-4 h-4 text-muted-foreground hover:text-foreground" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
@@ -324,16 +328,20 @@ export function AppSidebar() {
             ) : (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Avatar className="w-9 h-9 mx-auto cursor-pointer">
+                  <Avatar className="w-9 h-9 mx-auto cursor-pointer border border-sidebar-border/60">
                     <AvatarImage
-                      src={`https://api.dicebear.com/7.x/notionists/svg?seed=${user?.avatar}`}
+                      src={`https://api.dicebear.com/7.x/notionists/svg?seed=${user?.avatar || "yuki"}`}
+                      alt={user?.name || "User Avatar"}
+                      className="object-cover bg-secondary"
                     />
-                    <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+                    <AvatarFallback className="bg-primary/20 text-primary font-bold text-xs uppercase">
+                      {user?.name ? user.name.charAt(0) : "Y"}
+                    </AvatarFallback>
                   </Avatar>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  <p>{user?.name}</p>
-                  <p className="text-xs text-muted-foreground">{user?.email}</p>
+                  <p>{user?.name || "Yuki Tanaka"}</p>
+                  <p className="text-xs text-muted-foreground">{user?.email || "yuki@mangaflow.com"}</p>
                 </TooltipContent>
               </Tooltip>
             )}
