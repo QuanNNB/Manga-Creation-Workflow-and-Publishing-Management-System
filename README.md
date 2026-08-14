@@ -42,4 +42,3 @@
 - View series ranking 
 - Cancel low-ranking series 
 - View audit logs
-#### &#169; 2026 Group 7
